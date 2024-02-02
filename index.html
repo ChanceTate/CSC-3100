@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Chance</title>
+    <link href="css/lib/bootstrap.min (1).css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <div class="col-10 offset-1 card mt-5 text-blacks">
+        <div class="card-body">
+            <form>
+                <label for="txtFirstName" class="form-label">First Name</label>
+                <input id="txtFirstName" placeholder="FirstName" aria-label="First Name" class="form-control">
+                <label for="txtLastName" class="form-label">Last Name</label>
+                <input id="txtLastName" type="text" class="form-control"> 
+                <label for="txtEmail" class="form-label">Email</label>
+                <input id="txtEmail" type="email" class="form-control">
+                <label for="txtPassword" class="form-label">Password</label>
+                <input id="txtPassword" type="password" class="form-control">
+                <button id="btnSubmit" type="button" class="btn btn-primary col-12 mt-2">Submit</button>
+                <button id="btnReset" type="button" class="btn btn-secondary col-12 mt-0">Reset</button>
+            </form>
+        </div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        var strFirstName;
+        $('#btnReset').on('click',function(){
+            $('#txtFirstName').val('');
+            $('#txtLastName').val('');
+            $('#txtEmail').val('');
+            $('#txtPassword').val('');
+        })
+        $('#btnSubmit').on('click',function(){
+            let strFirstName = $('#txtFirstName').val();
+            let strLastName = $('#txtLastName').val();
+            let strEmail = $('#txtEmail').val();
+            let strPassword = $('#txtPassword').val();
+            
+            let blnError = false;
+            let strErrorMessage;
+            if(strFirstName.length < 1){
+                blnError = true;
+                strErrorMessage = strErrorMessage + 'First Name cannot be blank. '
+            }
+            if(strLastName.length < 1){
+                blnError = true;
+                strErrorMessage = strErrorMessage + 'Last Name cannot be blank. '
+            }
+            if(strEmail.length < 1){
+                blnError = true;
+                strErrorMessage = strErrorMessage + 'Email cannot be blank. '
+            }
+            if(strPassword.length < 1){
+                blnError = true;
+                strErrorMessage = strErrorMessage + 'Password cannot be blank. '
+            }
+            if(blnError == true){
+                Swal.fire({
+                    title: "Oops!",
+                    text: strErrorMessage,
+                    icon: "error"
+                });
+            } else{
+                console.log('No errors found');
+            }
+            console.log('Hello ' + strFirstName);
+        })
+    </script>
+</body>
+</html>
